@@ -221,14 +221,19 @@ async def get_documents(
     year_id: Optional[int] = Query(None, description="Filter by year ID"),
     db: AsyncSession = Depends(get_db)
 ):
-    # Start building the query
-    query = select(Document).options(
-        selectinload(Document.country),
-        selectinload(Document.document_type),
-        selectinload(Document.year)
+    # Start building the query with explicit joins
+    query = (
+        select(Document)
+        .join(Document.year)  # Explicitly join Year table
+        .join(Document.country)  # Join Country table for sorting
+        .options(
+            selectinload(Document.country),
+            selectinload(Document.document_type),
+            selectinload(Document.year)
+        )
     )
     
-    # Apply filters if parameters are provided
+    # Apply filters
     if country_id is not None:
         query = query.where(Document.country_id == country_id)
     if document_type_id is not None:
@@ -236,10 +241,13 @@ async def get_documents(
     if year_id is not None:
         query = query.where(Document.year_id == year_id)
     
-    # Join with Country for sorting and apply default sorting
-    query = query.join(Country).order_by(asc(Country.name))
+    # Correct sorting using the joined Year model
+    query = query.order_by(
+        desc(Year.value),  # Sort by year descending (newest first)
+        asc(Country.name)   # Then by country name ascending
+    )
     
-    # Execute the query
+    # Execute query
     result = await db.execute(query)
     documents = result.unique().scalars().all()
     
