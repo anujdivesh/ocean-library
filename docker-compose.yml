@@ -2,30 +2,39 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app/app
-      - ./uploads:/app/uploads
+      - ./app/uploads:/app/uploads
     environment:
-      - RELOAD=true  # Set to false in production
-      - WORKERS=1
-      - HOST=0.0.0.0
-      - PORT=8000
+      - DATABASE_URL=postgresql+asyncpg://postgres:Oceanportal2017*@db/library_db
+      - RELOAD=${RELOAD:-false}
+      - WORKERS=${WORKERS:-1}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: unless-stopped
 
   db:
-    image: postgres:13
+    image: postgres:16-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=appdb
+      - POSTGRES_PASSWORD=Oceanportal2017*
+      - POSTGRES_DB=library_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: unless-stopped
 
 volumes:
   postgres_data:

@@ -53,7 +53,7 @@ async def load_documents():
                 continue
 
             # Resolve FKs
-            country = await db.execute(select(Country).where(Country.name.ilike(f"%{country_value}%")))
+            country = await db.execute(select(Country).where(Country.value == country_value))
             country_obj = country.scalar_one_or_none()
             if not country_obj:
                 print(f"⚠️ Country not found: {country_value}")
