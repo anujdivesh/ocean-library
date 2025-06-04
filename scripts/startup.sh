@@ -1,17 +1,10 @@
-#!/bin/sh
-set -e
+#!/bin/bash
 
-# Wait for database if enabled
-if [ "$WAIT_FOR_DB" = "true" ]; then
-  echo "Waiting for database to be ready..."
-  /app/scripts/wait-for-db.sh
-fi
-
-# Initialize database if enabled
+# Initialize database if needed
 if [ "$INIT_DB" = "true" ]; then
-  echo "Initializing database..."
-  /app/scripts/init_db.sh
+    echo "Initializing database from backup..."
+    psql -h db -U postgres -d library_db -f /app/library.sql
 fi
 
-# Start the application
+# Run the application
 exec "$@"

@@ -1,4 +1,5 @@
 
+"""
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 
@@ -32,4 +33,3 @@ AsyncSessionLocal = sessionmaker(
 
 # Base model
 Base = declarative_base()
-"""

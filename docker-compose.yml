@@ -14,6 +14,7 @@ services:
       - DATABASE_URL=postgresql+asyncpg://postgres:Oceanportal2017*@db/library_db
       - RELOAD=${RELOAD:-false}
       - WORKERS=${WORKERS:-1}
+      - INIT_DB=${INIT_DB:-false}
     depends_on:
       db:
         condition: service_healthy
@@ -30,8 +31,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Oceanportal2017*
       - POSTGRES_DB=library_db
+      - INIT_DB=${INIT_DB:-false}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./library.sql:/docker-entrypoint-initdb.d/library.sql
     ports:
       - "5432:5432"
     restart: unless-stopped

@@ -40,7 +40,8 @@ async def verify_token(x_token: str = Header(...)):
 app = FastAPI(
     docs_url="/library/docs",
     redoc_url="/library/redoc",
-    openapi_url="/library/openapi.json"
+    openapi_url="/library/openapi.json",
+    favicon_url="/library/favicon.ico"
 )
 
 
@@ -63,7 +64,18 @@ ocean_router.mount(
 
 @ocean_router.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"Message": "Welcome to Ocean Portal Library, powered by OpenAPI"}
+
+# Favicon route (must include the prefix)
+@app.get("/favicon.ico", include_in_schema=False)
+@ocean_router.get("/favicon.ico", include_in_schema=False)
+async def get_favicon():
+    # Get the absolute path to the favicon
+    favicon_path = Path(__file__).parent / "icon.ico"
+    if not favicon_path.exists():
+        raise HTTPException(status_code=404, detail="Favicon not found")
+    return FileResponse(favicon_path)
+
 
 ####COUNTRY FUNCTIONS
 @ocean_router.get("/countries/")

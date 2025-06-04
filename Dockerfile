@@ -44,11 +44,12 @@ ENV PORT=8000
 
 EXPOSE 8000
 
-COPY scripts/ /app/scripts/
-RUN chmod +x /app/scripts/*.sh
+#COPY scripts/ /app/scripts/
+#RUN chmod +x /app/scripts/*.sh
+
 
 # Use ENTRYPOINT for initialization
-ENTRYPOINT ["/app/scripts/startup.sh"]
+#ENTRYPOINT ["/app/scripts/startup.sh"]
 
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
