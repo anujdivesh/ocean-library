@@ -7,6 +7,7 @@ from typing import Union
 from fastapi import FastAPI, Request, Response, APIRouter, Depends, HTTPException, Header, status, UploadFile, File, Form, Query
 from fastapi.responses import JSONResponse, StreamingResponse,FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 import io, os
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
@@ -43,7 +44,16 @@ app = FastAPI(
     openapi_url="/library/openapi.json",
     favicon_url="/library/favicon.ico"
 )
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (for development)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
+# .
 
 # Dependency
 async def get_db() -> AsyncSession:
