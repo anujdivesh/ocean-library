@@ -1,0 +1,8 @@
+{
+    "document_types": [
+      { "value": "tidecalendar", "name": "Tide Calendar" },
+      { "value": "waveclimate", "name": "Wave Climate Report" },
+      { "value": "geodetic", "name": "Geodetic Survey Report" }
+    ]
+  }
+  

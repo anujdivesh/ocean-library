@@ -1,0 +1,88 @@
+{
+    "countries_list": [
+      {
+        "value": "ASM",
+        "name": "American Samoa"
+      },
+      {
+        "value": "COK",
+        "name": "Cook Islands"
+      },
+      {
+        "value": "FJI",
+        "name": "Fiji"
+      },
+      {
+        "value": "PYF",
+        "name": "French Polynesia"
+      },
+      {
+        "value": "FSM",
+        "name": "Federated States of Micronesia"
+      },
+      {
+        "value": "GUM",
+        "name": "Guam"
+      },
+      {
+        "value": "KIR",
+        "name": "Kiribati"
+      },
+      {
+        "value": "MHL",
+        "name": "Marshall Islands"
+      },
+      {
+        "value": "NRU",
+        "name": "Nauru"
+      },
+      {
+        "value": "NIU",
+        "name": "Niue"
+      },
+      {
+        "value": "MNP",
+        "name": "Northern Mariana Islands"
+      },
+      {
+        "value": "NCL",
+        "name": "New Caledonia"
+      },
+      {
+        "value": "PLW",
+        "name": "Palau"
+      },
+      {
+        "value": "PNG",
+        "name": "Papua New Guinea"
+      },
+      {
+        "value": "SLB",
+        "name": "Solomon Islands"
+      },
+      {
+        "value": "WSM",
+        "name": "Samoa"
+      },
+      {
+        "value": "TKL",
+        "name": "Tokelau"
+      },
+      {
+        "value": "TON",
+        "name": "Tonga"
+      },
+      {
+        "value": "TUV",
+        "name": "Tuvalu"
+      },
+      {
+        "value": "VUT",
+        "name": "Vanuatu"
+      },
+      {
+        "value": "WLF",
+        "name": "Wallis and Futuna"
+      }
+    ]
+  }
