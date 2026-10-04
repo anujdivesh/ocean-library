@@ -13,7 +13,7 @@ services:
     environment:
       - DATABASE_URL=postgresql+asyncpg://postgres:Oceanportal2017*@db/library_db
       - RELOAD=${RELOAD:-false}
-      - WORKERS=${WORKERS:-1}
+      - WORKERS=${WORKERS:-4}
       - INIT_DB=${INIT_DB:-false}
     depends_on:
       db:

@@ -38,7 +38,7 @@ RUN apt-get update && \
 # Environment variables
 ENV DATABASE_URL=postgresql+asyncpg://postgres:Oceanportal2017*@db/library_db
 ENV RELOAD=false
-ENV WORKERS=1
+ENV WORKERS=4
 ENV HOST=0.0.0.0
 ENV PORT=8000
 
@@ -52,4 +52,6 @@ EXPOSE 8000
 #ENTRYPOINT ["/app/scripts/startup.sh"]
 
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Multiple worker processes so requests run in parallel across CPU cores.
+# Shell form so $WORKERS is expanded; uvloop/httptools are picked up automatically.
+CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${WORKERS:-4} --no-access-log

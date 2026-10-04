@@ -35,9 +35,9 @@ class Document(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
-    country_id = Column(Integer, ForeignKey("countries.id"))
-    document_type_id = Column(Integer, ForeignKey("document_types.id"))
-    year_id = Column(Integer, ForeignKey("years.id"))
+    country_id = Column(Integer, ForeignKey("countries.id"), index=True)
+    document_type_id = Column(Integer, ForeignKey("document_types.id"), index=True)
+    year_id = Column(Integer, ForeignKey("years.id"), index=True)
     image = Column(String)
     pdf = Column(String)
 

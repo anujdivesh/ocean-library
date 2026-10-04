@@ -8,6 +8,7 @@ from fastapi import FastAPI, Request, Response, APIRouter, Depends, HTTPExceptio
 from fastapi.responses import JSONResponse, StreamingResponse,FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 import io, os
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
@@ -15,7 +16,7 @@ from app.db import AsyncSessionLocal
 from app.models import Country
 from sqlalchemy import select
 from app.schemas import CountryCreate, YearCreate, DocumentTypeCreate
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import selectinload, contains_eager
 import os
 import shutil
 from uuid import uuid4
@@ -24,7 +25,7 @@ from app.schemas import DocumentTypeCreate,  DocumentTypeOut, YearOut, DocumentO
 from typing import List, Optional
 from sqlalchemy import asc, desc
 
-API_TOKEN = "99a920305541f1c38db611ebab95ba"
+API_TOKEN = "99a920305541f1c38db611ebab95baxxx0"
 
 #UPLOAD_DIR = "app/uploads/documents"
 
@@ -52,6 +53,8 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+# Compress JSON responses (the documents list gets much smaller over the wire)
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # .
 
@@ -237,9 +240,10 @@ async def get_documents(
         .join(Document.year)  # Explicitly join Year table
         .join(Document.country)  # Join Country table for sorting
         .options(
-            selectinload(Document.country),
-            selectinload(Document.document_type),
-            selectinload(Document.year)
+            # Reuse the joined rows instead of firing extra queries for them
+            contains_eager(Document.country),
+            contains_eager(Document.year),
+            selectinload(Document.document_type)
         )
     )
     
