@@ -1,0 +1,41 @@
+Country,Station,2020,2021,2022,2023,2024,2025,2026
+ASM,Pago Pago,.,.,.,.,.,L,P
+COK,Penrhyn,.,.,.,.,✓,L,.
+COK,Rarotonga,P,P,.,.,✓,L,.
+FJI,Lautoka,P,P,.,.,✓,L,.
+FJI,Port Denarau,.,.,.,.,.,L,.
+FJI,Suva,P,P,.,.,✓,L,.
+FJI,Vatia,.,.,.,.,.,L,.
+FSM,Pohnpei,P,P,.,.,✓,L,.
+KIR,Betio,P,P,.,.,✓,L,.
+KIR,Kanton,P,P,.,.,✓,L,.
+KIR,Kiritimati,P,P,.,.,✓,L,.
+MHL,Ebeye,.,.,.,.,✓,L,.
+MHL,Majuro,P,P,.,.,✓,L,.
+NIU,Niue,P,P,.,.,✓,L,.
+NRU,Nauru,P,P,P,P,✓,✓,P
+PLW,Malakal,P,P,.,.,✓,L,.
+PNG,Lombrum,P,P,.,.,✓,L,.
+PNG,Port Moresby,P,P,.,.,✓,L,.
+SLB,Honiara,P,P,.,.,✓,L,.
+SLB,Lata Wharf,P,P,.,.,✓,L,.
+SLB,Tarekukure,P,P,.,.,✓,L,.
+TKL,Atafu,.,.,.,.,.,L,P
+TKL,Fakaofo,.,.,.,.,.,L,P
+TKL,Nukunonu,.,.,.,.,.,L,P
+TON,Neiafu,P,P,.,.,✓,L,.
+TON,Nuku'alofa,P,P,.,.,✓,L,.
+TUV,Funafuti,P,P,.,.,✓,L,.
+TUV,Nanumaga,.,.,.,.,.,L,.
+TUV,Nanumea,.,.,.,.,.,L,.
+TUV,Niulakita,.,.,.,.,.,L,.
+TUV,Niutao,.,.,.,.,.,L,.
+TUV,Nui,.,.,.,.,.,L,.
+TUV,Nukufetau,.,.,.,.,.,L,.
+TUV,Nukulaelae,.,.,.,.,.,L,.
+TUV,Vaitupu,P,P,.,.,✓,L,.
+VUT,Lenakel,.,.,.,.,.,L,.
+VUT,Luganville,P,P,.,.,✓,L,.
+VUT,Malekula,.,.,.,.,.,L,.
+VUT,Port Vila,P,P,.,.,✓,L,.
+WSM,Apia,P,P,.,.,✓,L,.
